@@ -1,0 +1,17 @@
+fileFormatVersion: 2
+guid: ed809e1d7d3e12e4ea9d32cc947d639f
+timeCreated: 1455610698
+licenseType: Free
+MonoImporter:
+  serializedVersion: 2
+  defaultReferences:
+  - Soundmanage: {instanceID: 0}
+  - sfxTone: {fileID: 8300000, guid: 39bf2b86ed5d39942996c571a2c6503d, type: 3}
+  - triangleGate: {fileID: 184440, guid: 385477217c1eea745b7099d01764c126, type: 2}
+  - circleGate: {fileID: 155564, guid: d916fa7e49978ee45a784fdffb06c361, type: 2}
+  - squareGate: {fileID: 112654, guid: 6c85de2c227b71c48bb4fcd7a64a0a24, type: 2}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
