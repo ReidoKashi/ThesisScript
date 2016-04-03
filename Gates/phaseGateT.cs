@@ -2,6 +2,7 @@
 using System.Collections;
 
 public class phaseGateT : MonoBehaviour {
+	public Increment _phaseChange;
 	public float Acel;
 	public float Dec;
 	public Vector3 playerVec;
@@ -9,50 +10,44 @@ public class phaseGateT : MonoBehaviour {
 	public int speedLev;
 	public int limit = 3;
 	public int addMe = 1;
-	public bool maxGate;
 	public GameObject particleSys;
 	public Camera Cam;
 	public CrashAmount _crashInstance;
-	public GameObject liveCount;
-	
-	// Use this for initialization
-	void Start () {
-		
-		maxGate = false;
-		
+	Animator anim;
+
+	void Start()
+	{anim = GetComponent<Animator>();
 	}
-	
 	
 	void OnTriggerEnter(Collider col)
 	{ //gate trigger checks for proper gate 
 		if (col.gameObject.tag == "Triangle") 
-		{ Debug.Log("boost_triangle");
+		{ 
 			//call function Particle system from particle in camera
+			_phaseChange.phaseActivate();
 			particleSys.GetComponent<PassGate>().particleS();
-			//Cam.GetComponent<BackGround>().callBackT(); thiss changed the background
-			// if proper gate accelerate
-			if (maxGate == false)
-			{
+			//anim.SetBool("pass",true);
+
+		
 				playerRigid.AddForce(playerVec * Acel);
-			} else {
-				Debug.Log("reporting back no boost");}
-			
-		} else if (col.gameObject.tag == "Circle" || col.gameObject.tag == "Square") {
-			Debug.Log ("wrong gate!!");
+		
+			} else if (col.gameObject.tag == "Circle") {
+
+			_phaseChange.phaseAlt ();
+			particleSys.GetComponent<PassGate> ().particleS ();
+		
+		
+		}else{
+
 			// if not proper gate slow down
 			_crashInstance.GetComponent<CrashAmount>().gO();
 			playerRigid.AddForce(playerVec * Dec);
-			maxGate = false;
-			
-			//speedLev = 0;
+
 		}
 		
 	}
 	
-	public void GateSuspend(){
-		maxGate = true;
-	}
-	
+
 	
 }
 

@@ -4,10 +4,15 @@ using System.Collections;
 public class Tonal_2 : MonoBehaviour {
 
 	public AudioSource Soundmanage;
-	public AudioClip sfxTone;
+	public AudioClip morphFX1;
+	public AudioClip morphFX2;
+	public AudioClip compliment1;
+	public AudioClip compliment2;
+	public AudioClip compliment3;
 	public float updatedTone; 
 	private float fn = 1f;
 	public GameObject triangleGate,circleGate,squareGate;
+	
 	// Use this for initialization
 	void Start () {
 		
@@ -19,7 +24,7 @@ public class Tonal_2 : MonoBehaviour {
 	{
 		//float numAdd = .04f;
 		Debug.Log (updatedTone);
-		Soundmanage.clip = sfxTone;
+	//	Soundmanage.clip = sfxTone;
 		
 		if (!Soundmanage.isPlaying) {
 			Soundmanage.Play ();

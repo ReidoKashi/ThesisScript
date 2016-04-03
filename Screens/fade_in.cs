@@ -1,10 +1,12 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class testpass : MonoBehaviour {
-
+public class fade_in : MonoBehaviour {
+	public Sprite screenF;
+	public GameObject screen_F;
 	// Use this for initialization
 	void Start () {
+		//screen_F.GetComponent<Color> ().a) = .5f;
 	
 	}
 	

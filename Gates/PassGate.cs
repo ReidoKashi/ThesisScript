@@ -16,8 +16,7 @@ public class PassGate : MonoBehaviour {
 	public void particleS(){
 
 		particleSys.GetComponent<ParticleSystem>().Play();
-		//gameObject.GetComponent<ParticleSystem>().Play(); 
-		Debug.Log(" Particle Success");
+
 		
 	}
 

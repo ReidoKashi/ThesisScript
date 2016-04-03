@@ -2,10 +2,13 @@
 using System.Collections;
 
 public class Tonal : MonoBehaviour {
-	public Transform trackPoint;
 	public Transform spawnPoint;
 	public AudioSource Soundmanage;
-	public AudioClip sfxTone;
+	public AudioClip morphFX1;
+	public AudioClip morphFX2;
+	public AudioClip compliment1;
+	public AudioClip compliment2;
+	public AudioClip compliment3;
 	public float updatedTone; 
 	private int randClip;
 	private float fn = 1f;
@@ -35,7 +38,7 @@ public class Tonal : MonoBehaviour {
 		//float numAdd = .04f;
 		Debug.Log (updatedTone);
 		//Debug.Log (myPosition);
-		Soundmanage.clip = sfxTone;
+		//Soundmanage.clip = sfxTone;
 
 		if (!Soundmanage.isPlaying) {
 

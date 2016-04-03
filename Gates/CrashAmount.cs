@@ -4,9 +4,15 @@ using System.Collections;
 public class CrashAmount : MonoBehaviour {
 	public GameObject guiInterface;
 	public GameObject explodeAnim;
-	public int crashNum;	
+	public GameObject playerShip;
+	public Transform resetPosition;
 	public int gameOver;
-	public int phaseNum;
+	public Increment _increment;
+	public healthBarSystem _healthBar;
+	public BackGround _loseBackground;
+
+
+
 	private bool flipper;
 	void Start () {
 		int gameOver = 0;
@@ -19,60 +25,47 @@ public class CrashAmount : MonoBehaviour {
 
 
 	}
-	public void resetPhase() {
-		phaseNum = 0;
-		
-		
-	}
 
-	public void gO()
+
+	public void gO()// method starts crash animation + slows down vehicle 
 		{
+
+		guiInterface.GetComponent<Animator> ().SetBool ("damage", true);
 		if (!flipper) 
 		{flipper = true;
 			StartCoroutine (gameOverMethod ());
+
 		}
 	}
 
 	public IEnumerator gameOverMethod(){///_____________________________________________________inworks
 
-		Debug.Log ("gameover method called");
+
+
+
 		if (gameOver == 2) 
-		{   resetGo();
+		{   
+			resetGo();
 			explodeAnim.GetComponent<Animator>().SetBool("shipExplode",true);
-			yield return new WaitForSeconds(3f);
+			//Time.timeScale = .2f;
+			_loseBackground.muteBackground();
+			playerShip.GetComponent<Rigidbody>().AddForce(new Vector3(0,0,1) * 1000f,ForceMode.Force);
+			yield return new WaitForSeconds(7f);
 			Application.LoadLevel(0);
 
 		}
 		gameOver++;
-		yield return new WaitForSeconds(5f);
+		_healthBar.showHealth();
+		//guiInterface.GetComponent<Animator> ().SetBool ("damage", true);
+		//yield return new WaitForSeconds (1);
+
+		yield return new WaitForSeconds(2f);
+		guiInterface.GetComponent<Animator> ().SetBool ("damage", false);
 		flipper = false;
-		
 	}
 
 
-	public void openPhase()
-	{
-		if (!flipper) 
-		{flipper = true;
-			StartCoroutine (phaseMethod ());
-		}
-	}
 
-	public IEnumerator phaseMethod(){///_____________________________________________________inworks
-		
-		Debug.Log ("gameover method called");
-		if (phaseNum == 5) 
-		{   resetGo();
-			explodeAnim.GetComponent<Animator>().SetBool("shipExplode",true);
-			yield return new WaitForSeconds(3f);
-			Application.LoadLevel(0);
-			
-		}
-		gameOver++;
-		yield return new WaitForSeconds(5f);
-		flipper = false;
-		
-	}
 
 
 
