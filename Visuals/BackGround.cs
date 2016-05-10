@@ -204,6 +204,7 @@ IEnumerator mute()
 	public void phaseLurp_7()
 	{
 		StartCoroutine (phaseLurpC_7 ());
+		Debug.Log("tesat co routine added");
 	}
 	public IEnumerator phaseLurpC_7()
 	{

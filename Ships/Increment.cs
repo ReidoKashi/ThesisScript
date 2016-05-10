@@ -36,8 +36,8 @@ public class Increment : MonoBehaviour {
 	public int inc = 0;
 	public int resInc = 0;
 	private bool resFlip = false;
-	private GameObject[] gates = new GameObject[3];
-	private GameObject[] phase_Gates = new GameObject[5];
+	private GameObject[] gates = new GameObject[6];
+	private GameObject[] phase_Gates = new GameObject[6];
 	public GameObject[] challenge_Gates = new GameObject[3];
 	public bool boolGate;
 	public bool boolGateR;
@@ -58,6 +58,7 @@ public class Increment : MonoBehaviour {
 	public winState _winState;
 	public bool challengeOn;
 	public bool phaseDebug;
+	public bool phaseOff; // this will turn off the phasegate functionallity
 
 
 	//public collisionCrash _scriptTalk; 
@@ -69,6 +70,9 @@ public class Increment : MonoBehaviour {
 		gates [0] = triangleGate;
 		gates [1] = circleGate;
 		gates [2] = squareGate; 
+		gates [4] = triangleGate;
+		gates [3] = circleGate;
+		gates [5] = squareGate;
 		phase_Gates [0] = phase_SquareGate; 
 		phase_Gates [1] = phase_TriangleGate; 
 		phase_Gates [2] = phase_CircleGate;
@@ -93,9 +97,11 @@ public class Increment : MonoBehaviour {
 	void OnTriggerEnter(Collider Col)
 	{
 
-		if (Col.gameObject.tag == "Melody Gate" && inc <= 3  ) {
+		if (Col.gameObject.tag == "Circle" || Col.gameObject.tag == "Triangle" || Col.gameObject.tag == "Square" || Col.gameObject.tag == "Melody Gate") {
 			//inc++; Sets the gate to bring in the limits will code this logic later
-
+			if (phaseOff) // this will turn off the phase gate functionallity
+			{phaseCounter = 0;
+			}
 
 			Debug.Log ("phase has hit " + phaseCounter);
 			if (!boolGate) {
@@ -112,8 +118,9 @@ public class Increment : MonoBehaviour {
 					//2 circle
 
 				} else {
-					StartCoroutine(callRegGate());
-
+					if(!boolGateR)
+					{StartCoroutine(callRegGate());
+					}
 
 				}
 			}
@@ -130,7 +137,7 @@ public class Increment : MonoBehaviour {
 	{ Debug.Log ("fixing boolGate");
 		if (boolGateR) 
 		{boolGateR = false;
-		}
+		} //put it in an object after it
 		if (boolGate = true) {
 
 			boolGate = false;
@@ -139,13 +146,19 @@ public class Increment : MonoBehaviour {
 	}
 	IEnumerator callRegGate()
 	{
-		if (!boolGateR) 
+		if(!boolGateR) 
 		{
-			boolGateR = true;
-			phaseCounter++;
-			int randomNum = Random.Range (0, 3);
+			int randomNum = Random.Range (0, 5);
+			if(!boolGateR)
+			{
 
 			GameObject gateInstan_R = (GameObject)Instantiate (gates[randomNum], PlayerPos.position + speedLv_1, PlayerPos.rotation);
+			}
+			boolGateR = true;
+			phaseCounter++;
+
+
+
 
 			if(challengeOn)// if challange mode is on
 

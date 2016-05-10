@@ -1,10 +1,11 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class collisionCrashT : MonoBehaviour {
+public class collisionCrashS_epsilon : MonoBehaviour 
+{
 	[Header("LOGIC")]
 	public musLang _feedBack;
-	public NewTransfomrShip _reset;
+	public NewTransform_epsilon _reset;
 	Camera cam;
 	[Space(10)]
 	
@@ -27,7 +28,6 @@ public class collisionCrashT : MonoBehaviour {
 	public CrashAmount _crashInstance;
 	public winState _winState;
 
-
 	public IEnumerator resetMeCo ()
 	{ 
 		
@@ -45,37 +45,36 @@ public class collisionCrashT : MonoBehaviour {
 			yield return new WaitForSeconds (gradate);
 			
 		}
-		
-		
 		return true;
-
 	}
-	
-	void OnTriggerEnter(Collider col)
-	{ 
-
+		
+		
+		
+		
+		
+		void OnTriggerEnter(Collider col)
+		{ 
 			StartCoroutine (resetMeCo ());
-		if (col.gameObject.tag == "Triangle") 
-		{ _feedBack.endMusicSuccess ();
 
+			if (col.gameObject.tag == "Square") 
+		{_feedBack.endMusicSuccess (); 
 			particleSys.GetComponent<PassGate>().particleS();
-
-
 			_winState.incrementWin();
 
-			
-		} else if (col.gameObject.tag == "Circle" || col.gameObject.tag == "Square" || col.gameObject.tag == "RANDOM") {
+				
+		} else if (col.gameObject.tag == "Triangle" || col.gameObject.tag == "Circle" || col.gameObject.tag == "RANDOM" ) {
 			_feedBack.endMusicFailure ();
 			_crashInstance.GetComponent<CrashAmount>().gO();
-			playerRigid.AddForce(playerVec * Dec);
-
+				playerRigid.AddForce(playerVec * Dec);
+				
+				
+			}
+			
 		}
-		
-	}
-	
 	void OnTriggerExit(Collider col)
 	{ _reset.resetPlayer ();
 	}
-
-
+		
+		
+	
 }

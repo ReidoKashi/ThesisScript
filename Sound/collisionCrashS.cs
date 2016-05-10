@@ -1,41 +1,69 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class collisionCrashS : MonoBehaviour {
-		public Increment _increment;
-		public float Acel;
-		public float Dec;
-		public Vector3 playerVec;
-		public Rigidbody playerRigid;
-		public int speedLev;
-		public int limit = 3;
-		public int addMe = 1;
-		public bool maxGate;
-		public GameObject particleSys;
-		public Camera Cam;
-		public CrashAmount _crashInstance;
-		Animator anim;
+public class collisionCrashS : MonoBehaviour 
+{
+	[Header("LOGIC")]
+	public musLang _feedBack;
+	public NewTransfomrShip _reset;
+	Camera cam;
+	[Space(10)]
+	
+	[Header("BACKDROP")]
+	public float time = .25f;
+	public float gradate = .01f;
+	public float duration = .15f;
+	public Color resetBackColor;
+	[Space(10)]
+ 
+	public float Acel;
+	public float Dec;
+	public Vector3 playerVec;
+	public Rigidbody playerRigid;
+	public int speedLev;
+	public int limit = 3;
+	public int addMe = 1;
+	public GameObject particleSys;
+	public Camera Cam;
+	public CrashAmount _crashInstance;
+	public winState _winState;
 
-		// Use this for initialization
-		void Start () {
+	public IEnumerator resetMeCo ()
+	{ 
+		
+		
+		
+		Color currentColor = Cam.backgroundColor;
+		
+		float time = .25f;
+		float logic = gradate / duration;
+		while (time < 1) {
 			
-		//anim = GetComponent<Animator> ();
+			
+			Cam.backgroundColor = Color.LerpUnclamped (currentColor, resetBackColor, time);
+			time += logic;
+			yield return new WaitForSeconds (gradate);
 			
 		}
+		return true;
+	}
+		
+		
+		
 		
 		
 		void OnTriggerEnter(Collider col)
-		{ //gate trigger checks for proper gate 
+		{ 
+			StartCoroutine (resetMeCo ());
+
 			if (col.gameObject.tag == "Square") 
-			{ 
-			_increment.gateSound();
+		{_feedBack.endMusicSuccess (); 
 			particleSys.GetComponent<PassGate>().particleS();
-					playerRigid.AddForce(playerVec * Acel);
-			//anim.SetBool("pass",true);
+			_winState.incrementWin();
 
 				
-		} else if (col.gameObject.tag == "Triangle" || col.gameObject.tag == "Circle") {
-				// if not proper gate slow down
+		} else if (col.gameObject.tag == "Triangle" || col.gameObject.tag == "Circle" || col.gameObject.tag == "RANDOM" ) {
+			_feedBack.endMusicFailure ();
 			_crashInstance.GetComponent<CrashAmount>().gO();
 				playerRigid.AddForce(playerVec * Dec);
 				
@@ -43,6 +71,9 @@ public class collisionCrashS : MonoBehaviour {
 			}
 			
 		}
+	void OnTriggerExit(Collider col)
+	{ _reset.resetPlayer ();
+	}
 		
 		
 	

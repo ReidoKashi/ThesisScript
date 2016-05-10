@@ -40,7 +40,7 @@ public class CrashAmount : MonoBehaviour {
 
 	public IEnumerator gameOverMethod(){///_____________________________________________________inworks
 
-
+		Debug.Log ("Damage_Sent!!!!!!!!!!!!!!!!!!!!!!!!");
 
 
 		if (gameOver == 2) 
@@ -51,7 +51,7 @@ public class CrashAmount : MonoBehaviour {
 			_loseBackground.muteBackground();
 			playerShip.GetComponent<Rigidbody>().AddForce(new Vector3(0,0,1) * 1000f,ForceMode.Force);
 			yield return new WaitForSeconds(7f);
-			Application.LoadLevel(0);
+			Application.LoadLevel(1);
 
 		}
 		gameOver++;

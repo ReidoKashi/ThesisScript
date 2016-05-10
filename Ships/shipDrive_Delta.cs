@@ -9,7 +9,7 @@
 using UnityEngine;
 using System.Collections;
 
-public class shipDrive : MonoBehaviour 
+public class shipDrive_Delta : MonoBehaviour 
 {
 	//[Header("Logic"]
 
@@ -49,7 +49,7 @@ public class shipDrive : MonoBehaviour
 
 	// Update is called once per frame
 	void FixedUpdate () 
-	{	Debug.Log (rb.velocity.z + " this is the velocity");
+	{	//Debug.Log (rb.velocity.z + " this is the velocity");
 		//Debug.Log (rb.velocity.z + " is the velocity"); 
 		//prototype 1 logic
 		if(prototype_1)
@@ -100,7 +100,7 @@ public class shipDrive : MonoBehaviour
 				
 			}
 			rb.AddForce (new Vector3 (0, 0,5f), ForceMode.Force);
-			if(rb.velocity.z >= 100)
+			if(rb.velocity.z >= 60)
 			{
 				Debug.Log ("shooting over the limit");
 				rb.AddForce(new Vector3(0,0,-50f),ForceMode.Force);
@@ -116,10 +116,11 @@ public class shipDrive : MonoBehaviour
 			{ Time.timeScale = 0;
 				gamePaused = true;
 			}	
-		} else if(gamePaused)
+		} else if (gamePaused)
 		{ if (Input.anyKey)
 			{ Time.timeScale = 1;
 			}
+			gamePaused = false;
 		}
 		
 

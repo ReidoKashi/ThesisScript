@@ -17,7 +17,7 @@ public class Transform_ship : MonoBehaviour {
 	{
 
 		// W pressed - and triangle ship activated
-	if (Input.GetKey(KeyCode.W))
+	if (Input.GetKeyDown(KeyCode.W))
 		{
 			anim.SetInteger("Ship_State",1);
 			//Triangle_Ship.GetComponent<Animation>().Play ("Triangle_A");
@@ -26,7 +26,7 @@ public class Transform_ship : MonoBehaviour {
 
 
 		// S pressed - and Square ship activated
-		if (Input.GetKey(KeyCode.S))
+		if (Input.GetKeyDown(KeyCode.S))
 		{
 			anim.SetInteger("Ship_State",2);
 			Debug.Log ("S was pressed");
@@ -34,33 +34,33 @@ public class Transform_ship : MonoBehaviour {
 		}
 
 		// A pressed - and Circle ship activated
-		if (Input.GetKey(KeyCode.A))
+		if (Input.GetKeyDown(KeyCode.A))
 		{	
 		//	_morphSystem.animPin();
 			anim.SetInteger("Ship_State",0);
 			gameObject.tag = "Circle";
 		}
 	
-		if (Input.GetButton("joy_1"))
-		{
-
-			anim.SetInteger("Ship_State",1);
-			gameObject.tag = "Triangle";
-		}
-		
-		if (Input.GetButton("joy_2"))
-		{
-
-			anim.SetInteger("Ship_State",2);
-			gameObject.tag = "Square";
-		}
-		
-		if (Input.GetButton("joy_3"))
-		{	
-
-			anim.SetInteger("Ship_State",0);
-			gameObject.tag = "Circle";
-		}
+//		if (Input.GetButton("joy_1"))
+//		{
+//
+//			anim.SetInteger("Ship_State",1);
+//			gameObject.tag = "Triangle";
+//		}
+//		
+//		if (Input.GetButton("joy_2"))
+//		{
+//
+//			anim.SetInteger("Ship_State",2);
+//			gameObject.tag = "Square";
+//		}
+//		
+//		if (Input.GetButton("joy_3"))
+//		{	
+//
+//			anim.SetInteger("Ship_State",0);
+//			gameObject.tag = "Circle";
+//		}
 	
 	
 	

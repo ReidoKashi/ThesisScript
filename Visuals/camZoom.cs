@@ -3,15 +3,16 @@ using System.Collections;
 
 public class camZoom : MonoBehaviour {
 	public Camera cam;
-	public float end = 45f;
-	public float start = 23f;
-	public float time ;
+	public float end;
+	public float start;
+	public float time;
 	public float gradate;
 	public float increment;
+
 	// Update is called once per frame
   void OnTriggerEnter(Collider col)
 	{
-		if (col.gameObject.tag == "Triangle" || col.gameObject.tag == "Triangle"||col.gameObject.tag == "Circle") 
+		if (col.gameObject.tag == "Triangle" || col.gameObject.tag == "Triangle"||col.gameObject.tag == "Circle"||col.gameObject.tag == "RANDOM") 
 		
 		{
 			updateCamera();
@@ -34,8 +35,16 @@ public class camZoom : MonoBehaviour {
 				yield return new WaitForSeconds(gradate);
 			
 		}
+		yield return new WaitForSeconds(.2f);
+
+		}
+
+		
+		
+		
+		
 	}
 
 
 
-}
+

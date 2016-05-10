@@ -1,10 +1,10 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class collisionCrashT : MonoBehaviour {
+public class collisionCrashT_epsilon : MonoBehaviour {
 	[Header("LOGIC")]
 	public musLang _feedBack;
-	public NewTransfomrShip _reset;
+	public NewTransform_epsilon _reset;
 	Camera cam;
 	[Space(10)]
 	

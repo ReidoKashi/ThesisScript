@@ -1,8 +1,10 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class Restart_Screen : MonoBehaviour {
-
+public class EHM : MonoBehaviour {
+	public bool Easy;
+	public bool Medium;
+	public bool Hard;
 	// Use this for initialization
 	void Start () {
 	
@@ -10,10 +12,6 @@ public class Restart_Screen : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-	if(Input.GetKeyDown(KeyCode.R)){
-
-			Application.LoadLevel(1);
+	
 	}
 }
-
-		}
